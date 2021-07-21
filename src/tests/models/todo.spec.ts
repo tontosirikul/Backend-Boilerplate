@@ -2,7 +2,7 @@ import { TodoListStore } from "../../models/todo";
 
 const store = new TodoListStore();
 
-describe("Todo Model", () => {
+describe("🏁 testing model (Todo)", () => {
   it("should have an index method", () => {
     expect(store.index).toBeDefined();
   });

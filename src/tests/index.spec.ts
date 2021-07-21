@@ -3,7 +3,7 @@ import app from "../index";
 
 const request = supertest(app);
 
-describe("Endpoint responses testing (Home)", () => {
+describe("🏁 testing responses endpoint (Home)", () => {
   it("home endpoint should be fine", async () => {
     const response = await request.get("/");
     expect(response.status).toBe(200);

@@ -7,7 +7,7 @@ import SuiteInfo = jasmine.JasmineStartedInfo;
 import CustomReporter = jasmine.CustomReporter;
 class CustomProcessor extends DisplayProcessor {
   public displayJasmineStarted(info: SuiteInfo, log: string): string {
-    return `${log}`;
+    return `🔬 ${log}`;
   }
 }
 jasmine.getEnv().clearReporters();
