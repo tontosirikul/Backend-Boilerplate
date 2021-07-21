@@ -9,7 +9,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\" --quiet",
     "build": "yarn tsc",
     "jasmine": "jasmine",
-    "test": "ENV=test db-migrate up --env test && jasmine-ts && db-migrate reset --env test",
+    "test": "db-migrate up --env test && ENV=test jasmine-ts && db-migrate reset --env test",
     "start": "nodemon src/index.ts"
   },
   "devDependencies": {
