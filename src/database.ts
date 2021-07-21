@@ -13,24 +13,26 @@ const {
 } = process.env;
 
 let client;
-console.log(ENV);
+// console.log(ENV);
 
 if (ENV === "test") {
-  client = new Pool({
-    host: POSTGRES_HOST,
-    database: POSTGRES_DB,
-    user: POSTGRES_USER,
-    password: POSTGRES_PASSWORD,
-  });
-}
-
-if (ENV === "dev") {
   client = new Pool({
     host: POSTGRES_HOST,
     database: POSTGRES_TEST_DB,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
   });
+  console.log(`✅ connected to ${POSTGRES_TEST_DB}`)
+}
+
+if (ENV === "dev") {
+  client = new Pool({
+    host: POSTGRES_HOST,
+    database: POSTGRES_DB,
+    user: POSTGRES_USER,
+    password: POSTGRES_PASSWORD,
+  });
+  console.log(`✅ connected to ${POSTGRES_DB}`)
 }
 
 export default client;

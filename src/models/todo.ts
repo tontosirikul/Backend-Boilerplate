@@ -62,8 +62,7 @@ export class TodoListStore {
 
       const result = await conn.query(sql, [id]);
 
-      const todo = result.rows[0];
-
+      const todo = result.command.concat(" "+result.rowCount+" rows");
       conn.release();
 
       return todo;

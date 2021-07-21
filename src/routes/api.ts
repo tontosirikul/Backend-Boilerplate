@@ -1,7 +1,7 @@
-import express from "express";
+import  express ,{Request,Response} from "express";
 const routes = express.Router();
 
-routes.get("/", (req: express.Request, res: express.Response): void => {
+routes.get("/", (req: Request, res: Response): void => {
   res.send("main api");
 });
 
