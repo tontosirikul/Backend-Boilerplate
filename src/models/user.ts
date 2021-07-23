@@ -20,7 +20,7 @@ export class UserStore {
     try {
       // @ts-ignore
       const conn = await client.connect();
-      const sql = "SELECT * FROM users";
+      const sql = "SELECT username FROM users";
       const result = await conn.query(sql);
       conn.release();
       return result.rows;
@@ -56,10 +56,10 @@ export class UserStore {
 
       const result = await conn.query(sql, [b.username, hash]);
 
-      const todo = result.rows[0];
+      const user = result.rows[0];
 
       conn.release();
-      return todo;
+      return user;
     } catch (err) {
       throw new Error(`Could not add new user ${b.username}. Error: ${err}`);
     }
@@ -87,31 +87,31 @@ export class UserStore {
 
       // const todo = result.command.concat(" "+result.rowCount+" rows");
       conn.release();
-      const todo = result.rows[0];
+      const user = result.rows[0];
 
-      return todo;
+      return user;
     } catch (err) {
       throw new Error(`Could not delete todo ${id}. Error: ${err}`);
     }
   }
   async authenticate(username: string, password: string): Promise<User | null> {
-    // @ts-ignore
-    const conn = await client.connect();
-    const sql = "SELECT password_digest FROM users WHERE username=($1)";
+    try {
+      // @ts-ignore
+      const conn = await client.connect();
+      const sql =
+        "SELECT username, password_digest FROM users WHERE username=($1)";
 
-    const result = await conn.query(sql, [username]);
+      const result = await conn.query(sql, [username]);
 
-    console.log(password + bcrypt_code);
-
-    if (result.rows.length) {
-      const user = result.rows[0];
-
-      console.log(user);
-
-      if (bcrypt.compareSync(password + bcrypt_code, user.password_digest)) {
-        return user;
+      if (result.rows.length) {
+        const user = result.rows[0];
+        if (bcrypt.compareSync(password + bcrypt_code, user.password_digest)) {
+          return user;
+        }
       }
+      throw new Error("user not found");
+    } catch (error) {
+      throw new Error("user not found");
     }
-    return null;
   }
 }

@@ -1,7 +1,8 @@
-import  express ,{Request,Response} from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import routes from "./routes/api";
 import todolist_routes from "./handlers/todo";
+import user_routes from "./handlers/user";
 const app = express();
 
 const port = 3000;
@@ -15,6 +16,7 @@ app.get("/", (req: Request, res: Response): void => {
   res.send("Home");
 });
 todolist_routes(app);
+user_routes(app);
 app.get("*", (req: Request, res: Response): void => {
   res.send("No route");
 });
@@ -22,7 +24,5 @@ app.get("*", (req: Request, res: Response): void => {
 app.listen(port, (): void => {
   console.log(`server started at localhost:${port}`);
 });
-
-
 
 export default app;
