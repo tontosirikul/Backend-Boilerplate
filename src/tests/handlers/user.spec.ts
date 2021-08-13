@@ -32,6 +32,7 @@ describe("🏁 testing endpoint (User)", () => {
   });
   it("should get all user", async () => {
     const response = await request.get("/users").expect(200);
+    console.log(response.body);
     expect(response.body.length).toEqual(2);
   });
   it("should acknowledge mockUser", async () => {
@@ -53,7 +54,7 @@ describe("🏁 testing endpoint (User)", () => {
   it("should get mockUser_2 with id 3 and username", async () => {
     const response = await request.get("/users/2");
     expect(response.body.id).toEqual(2);
-    expect(response.body.username).toEqual("TosGirl");
+    expect(response.body.username).toEqual("TosBoy");
   });
   it("should edit mockUser_2 to be mockUser_3", async () => {
     const response = await request

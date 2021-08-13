@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import routes from "./routes/api";
 import todolist_routes from "./handlers/todo";
+import products_routes from "./handlers/product";
 import user_routes from "./handlers/user";
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/", (req: Request, res: Response): void => {
   res.send("Home");
 });
 todolist_routes(app);
+products_routes(app);
 user_routes(app);
 app.get("*", (req: Request, res: Response): void => {
   res.send("No route");
