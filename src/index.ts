@@ -4,6 +4,7 @@ import routes from "./routes/api";
 import todolist_routes from "./handlers/todo";
 import products_routes from "./handlers/product";
 import user_routes from "./handlers/user";
+import orders_routes from "./handlers/order";
 const app = express();
 
 const port = 3000;
@@ -16,9 +17,12 @@ app.use("/api", routes);
 app.get("/", (req: Request, res: Response): void => {
   res.send("Home");
 });
+
 todolist_routes(app);
 products_routes(app);
 user_routes(app);
+orders_routes(app);
+
 app.get("*", (req: Request, res: Response): void => {
   res.send("No route");
 });

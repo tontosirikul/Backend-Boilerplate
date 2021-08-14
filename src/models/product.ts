@@ -60,7 +60,6 @@ export class ProductsStore {
       // @ts-ignore
       const conn = await client.connect();
       const result = await conn.query(sql, [b.name, b.price, id]);
-      console.log(result);
       conn.release();
       return result.rows[0];
     } catch (err) {

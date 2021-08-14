@@ -32,7 +32,6 @@ describe("🏁 testing endpoint (User)", () => {
   });
   it("should get all user", async () => {
     const response = await request.get("/users").expect(200);
-    console.log(response.body);
     expect(response.body.length).toEqual(2);
   });
   it("should acknowledge mockUser", async () => {

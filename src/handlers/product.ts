@@ -9,7 +9,7 @@ const index = async (req: Request, res: Response) => {
     const products = await store.index();
     res.json(products);
   } catch (error) {
-    res.status(400).send("kuy");
+    res.status(400).send(error.message);
   }
 };
 
